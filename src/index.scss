@@ -486,13 +486,40 @@
     border-color: #0f2a52;
   }
 
-  &:active, &.active {
-    background-color: #0a1f3d;
-    border-color: #0a1f3d;
+  &:not(:disabled, .disabled):active,
+  &:not(:disabled, .disabled).active,
+  .show > &.dropdown-toggle {
+    background-color: #0a1f3d !important;
+    border-color: #0a1f3d !important;
   }
 
   &:disabled {
     background-color: #7a9acc;
     border-color: #7a9acc;
+  }
+}
+
+.btn.btn-outline-brand {
+  color: #15376d;
+  border-color: #15376d;
+
+  &:hover, &:focus {
+    color: #ffffff;
+    background-color: #15376d;
+    border-color: #15376d;
+  }
+
+  &:not(:disabled, .disabled):active,
+  &:not(:disabled, .disabled).active,
+  .show > &.dropdown-toggle {
+    color: #ffffff !important;
+    background-color: #0a1f3d !important;
+    border-color: #0a1f3d !important;
+  }
+
+  &:disabled {
+    color: #7a9acc;
+    border-color: #7a9acc;
+    background-color: transparent;
   }
 }
