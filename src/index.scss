@@ -476,3 +476,23 @@
 @import "course-tabs/course-tabs-navigation.scss";
 @import "courseware/course/sidebar/common/SidebarBase.scss";
 @import "courseware/course/sidebar/sidebars/course-outline/CourseOutlineTray.scss";
+
+.btn.btn-brand {
+  background-color: #15376d;
+  border-color: #15376d;
+
+  &:hover, &:focus {
+    background-color: #0f2a52;
+    border-color: #0f2a52;
+  }
+
+  &:active, &.active {
+    background-color: #0a1f3d;
+    border-color: #0a1f3d;
+  }
+
+  &:disabled {
+    background-color: #7a9acc;
+    border-color: #7a9acc;
+  }
+}

@@ -49,24 +49,6 @@ const GradeSummaryTableFooter = () => {
         <div id="weighted-grade-summary" className="col-8 p-0 small">
           <Stack gap={2} direction="horizontal">
             {intl.formatMessage(messages.weightedGradeSummary)}
-            <OverlayTrigger
-              trigger="hover"
-              placement="bottom"
-              overlay={(
-                <Tooltip>
-                  {intl.formatMessage(
-                    messages.weightedGradeSummaryTooltip,
-                    { roundedGrade: totalGrade, rawGrade },
-                  )}
-                </Tooltip>
-              )}
-            >
-              <Icon
-                src={InfoOutline}
-                size="sm"
-                alt={intl.formatMessage(messages.gradeSummaryTooltipAlt)}
-              />
-            </OverlayTrigger>
           </Stack>
         </div>
         <div data-testid="gradeSummaryFooterTotalWeightedGrade" aria-labelledby="weighted-grade-summary" className="col-4 p-0 text-right font-weight-bold small">{totalGrade}{isLocaleRtl && '\u200f'}%</div>
