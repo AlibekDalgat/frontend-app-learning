@@ -45,6 +45,7 @@ const config = {
       ]
     },
     'org.openedx.frontend.layout.header_learning.v1': {
+      keepDefault: false,
       plugins: [
         {
           op: PLUGIN_OPERATIONS.Insert,
@@ -69,6 +70,8 @@ const config = {
 
               const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
 
+              const discoveryUrl = `${appConfig.LMS_BASE_URL}/courses`;
+
               return (
                 <header className="learning-header">
                   <a className="sr-only sr-only-focusable" href="#main-content">
@@ -89,7 +92,7 @@ const config = {
                       />
                     </a>
 
-                    <div className="flex-grow-1 course-title-lockup d-flex align-items-center" style={{ lineHeight: 1 }}>
+                    <div className="course-title-lockup d-flex align-items-center" style={{ lineHeight: 1, marginRight: '1rem' }}>
                       <div style={{ minWidth: 0 }}>
                         <span className="d-block small m-0">
                           {courseOrg} {courseNumber}
@@ -100,10 +103,73 @@ const config = {
                       </div>
                     </div>
 
+                    <nav className="d-flex align-items-center" style={{ marginRight: 'auto' }}>
+                      <a
+                        href={appConfig.LMS_BASE_URL + '/dashboard'}
+                        className="nav-link"
+                        style={{
+                          background: 'none',
+                          borderBottom: '2px solid transparent',
+                          color: '#374151',
+                          display: 'block',
+                          fontSize: '14px',
+                          fontWeight: '500',
+                          lineHeight: '22px',
+                          padding: '20px 0',
+                          margin: '0 16px 0 0',
+                          textDecoration: 'none',
+                          cursor: 'pointer',
+                          transition: 'all 0.2s ease',
+                          position: 'relative'
+                        }}
+                        onMouseEnter={(e) => {
+                          e.target.style.color = '#111827';
+                          e.target.style.borderBottomColor = '#15376d';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.target.style.color = '#374151';
+                          e.target.style.borderBottomColor = 'transparent';
+                        }}
+                      >
+                        Моё обучение
+                      </a>
+
+                      <a
+                        href={discoveryUrl}
+                        className="nav-link"
+                        style={{
+                          background: 'none',
+                          borderBottom: '2px solid transparent',
+                          color: '#374151',
+                          display: 'block',
+                          fontSize: '14px',
+                          lineHeight: '22px',
+                          padding: '20px 0',
+                          margin: '0 16px 0 0',
+                          textDecoration: 'none',
+                          cursor: 'pointer',
+                          transition: 'all 0.2s ease',
+                          position: 'relative'
+                        }}
+                        onMouseEnter={(e) => {
+                          e.target.style.color = '#111827';
+                          e.target.style.borderBottomColor = '#15376d';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.target.style.color = '#374151';
+                          e.target.style.borderBottomColor = 'transparent';
+                        }}
+                      >
+                        Каталог обучения
+                      </a>
+                    </nav>
+
+                    <div className="flex-grow-1"></div>
+
                     {showUserDropdown && authenticatedUser && (
                       <div
                         ref={dropdownRef}
-                        className={`pgn__dropdown pgn__dropdown-light user-dropdown ml-3 dropdown ${isDropdownOpen ? 'show' : ''}`}
+                        className={`pgn__dropdown pgn__dropdown-light user-dropdown dropdown ${isDropdownOpen ? 'show' : ''}`}
                       >
                         <button
                           aria-haspopup="true"
@@ -131,7 +197,7 @@ const config = {
                         </button>
                         <div className={`dropdown-menu-right dropdown-menu ${isDropdownOpen ? 'show' : ''}`}>
                           <a href={appConfig.LMS_BASE_URL + '/dashboard'} className="pgn__dropdown-item dropdown-item">
-                            Панель управления
+                            Моё обучение
                           </a>
                           <a
                             href={`${appConfig.ACCOUNT_PROFILE_URL}/u/${authenticatedUser.username}`}
