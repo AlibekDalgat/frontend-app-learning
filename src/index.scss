@@ -469,7 +469,9 @@
     }
   }
 }
-
+.custom-bg-info-100 {
+    background-color: #EDE8F5 !important;
+}
 // Import component-specific sass files
 @import "courseware/course/celebration/CelebrationModal.scss";
 @import "courseware/course/sidebar/sidebars/discussions/Discussions.scss";

@@ -43,7 +43,7 @@ const SidebarSection = ({ section, handleSelectSection }) => {
         variant="tertiary"
         className={classNames(
           'd-flex align-items-center w-100 px-4 py-3.5 rounded-0 justify-content-start',
-          { 'bg-info-100': isActiveSection },
+          { 'custom-bg-info-100': isActiveSection },
         )}
         onClick={() => handleSelectSection(id)}
       >
