@@ -6,6 +6,9 @@
 @import "~@edx/frontend-component-footer/dist/footer";
 @import "~@edx/frontend-component-header/dist/index";
 
+@import "./_learning";
+@import "./_progress";
+@import "./_dates";
 
 #root {
   display: flex;
@@ -59,6 +62,15 @@
       border-bottom-color: $primary-500;
     }
   }
+}
+
+.nav-underline-tabs .nav-link.active {
+    font-weight: 400;
+    color: #2F2F60;
+    border-bottom-color: #2F2F60;
+}
+.nav-underline-tabs .nav-link:hover {
+    color: #2F2F60;
 }
 
 .pgn__menu-select .pgn__menu-select-popup {
@@ -476,50 +488,3 @@
 @import "course-tabs/course-tabs-navigation.scss";
 @import "courseware/course/sidebar/common/SidebarBase.scss";
 @import "courseware/course/sidebar/sidebars/course-outline/CourseOutlineTray.scss";
-
-.btn.btn-brand {
-  background-color: #15376d;
-  border-color: #15376d;
-
-  &:hover, &:focus {
-    background-color: #0f2a52;
-    border-color: #0f2a52;
-  }
-
-  &:not(:disabled, .disabled):active,
-  &:not(:disabled, .disabled).active,
-  .show > &.dropdown-toggle {
-    background-color: #0a1f3d !important;
-    border-color: #0a1f3d !important;
-  }
-
-  &:disabled {
-    background-color: #7a9acc;
-    border-color: #7a9acc;
-  }
-}
-
-.btn.btn-outline-brand {
-  color: #15376d;
-  border-color: #15376d;
-
-  &:hover, &:focus {
-    color: #ffffff;
-    background-color: #15376d;
-    border-color: #15376d;
-  }
-
-  &:not(:disabled, .disabled):active,
-  &:not(:disabled, .disabled).active,
-  .show > &.dropdown-toggle {
-    color: #ffffff !important;
-    background-color: #0a1f3d !important;
-    border-color: #0a1f3d !important;
-  }
-
-  &:disabled {
-    color: #7a9acc;
-    border-color: #7a9acc;
-    background-color: transparent;
-  }
-}
