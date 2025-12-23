@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { PluginSlot } from '@openedx/frontend-plugin-framework';
 
-import { LearningHeader as Header } from '@edx/frontend-component-header';
+import CustomLearningHeader from '../../components/CustomLearningHeader';
 
 const HeaderSlot = ({
   courseOrg, courseNumber, courseTitle, showUserDropdown,
@@ -19,7 +19,7 @@ const HeaderSlot = ({
       showUserDropdown,
     }}
   >
-    <Header
+    <CustomLearningHeader
       courseOrg={courseOrg}
       courseNumber={courseNumber}
       courseTitle={courseTitle}
