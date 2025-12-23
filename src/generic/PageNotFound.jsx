@@ -3,7 +3,7 @@ import { Hyperlink } from '@openedx/paragon';
 import { useIntl } from '@edx/frontend-platform/i18n';
 import { logError } from '@edx/frontend-platform/logging';
 import { sendTrackEvent } from '@edx/frontend-platform/analytics';
-import { FooterSlot } from '@edx/frontend-component-footer';
+import CustomFooter from '../components/CustomFooter';
 
 import HeaderSlot from '../plugin-slots/HeaderSlot';
 import messages from './messages';
@@ -41,7 +41,7 @@ const PageNotFound = () => {
           )}
         </p>
       </main>
-      <FooterSlot />
+      <CustomFooter />
     </>
   );
 };

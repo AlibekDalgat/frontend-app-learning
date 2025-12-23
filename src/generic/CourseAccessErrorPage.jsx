@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useIntl } from '@edx/frontend-platform/i18n';
-import { FooterSlot } from '@edx/frontend-component-footer';
+import CustomFooter from '../components/CustomFooter';
 import { LOADED, LOADING } from '@src/constants';
 import HeaderSlot from '../plugin-slots/HeaderSlot';
 import useActiveEnterpriseAlert from '../alerts/active-enteprise-alert';
@@ -33,7 +33,7 @@ const CourseAccessErrorPage = () => {
         <PageLoading
           srMessage={intl.formatMessage(messages.loading)}
         />
-        <FooterSlot />
+        <CustomFooter />
       </>
     );
   }
@@ -52,7 +52,7 @@ const CourseAccessErrorPage = () => {
           }}
         />
       </main>
-      <FooterSlot />
+      <CustomFooter />
     </>
   );
 };
