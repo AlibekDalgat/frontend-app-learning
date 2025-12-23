@@ -32,7 +32,6 @@ const CustomLearningHeader = ({ courseOrg, courseNumber, courseTitle, showUserDr
       </a>
       <div className="container-xl py-2 d-flex align-items-center">
 
-        {/* Лого */}
         <a
           href={appConfig.LMS_BASE_URL + '/dashboard'}
           className="logo d-flex align-items-center"
@@ -40,13 +39,12 @@ const CustomLearningHeader = ({ courseOrg, courseNumber, courseTitle, showUserDr
         >
           <img
             className="d-block"
-            src="/static/images/logo.png"
+            src={appConfig.LMS_BASE_URL + "/static/images/logo.png"}
             alt="Лого компании"
             style={{ height: '40px' }}
           />
         </a>
 
-        {/* Название курса */}
         <div className="course-title-lockup d-flex align-items-center" style={{ lineHeight: 1, marginRight: '1rem' }}>
           <div style={{ minWidth: 0 }}>
             <span className="d-block small m-0">
@@ -109,7 +107,7 @@ const CustomLearningHeader = ({ courseOrg, courseNumber, courseTitle, showUserDr
             }}
             onMouseEnter={(e) => {
               e.target.style.color = '#111827';
-              e.target.style.borderBottomColor = '#15376d';
+              e.target.style.borderBottomColor = '#2F2F60';
             }}
             onMouseLeave={(e) => {
               e.target.style.color = '#374151';
