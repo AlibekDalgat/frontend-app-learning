@@ -108,13 +108,6 @@ const CertificateStatus = () => {
     body = intl.formatMessage(messages[`${certCase}Body`]);
   } else if (mode === COURSE_EXIT_MODES.celebration || certIsDownloadable) {
     switch (certStatus) {
-      case 'requesting':
-        certCase = 'requestable';
-        buttonAction = () => { dispatch(requestCert(courseId)); };
-        body = intl.formatMessage(messages[`${certCase}Body`]);
-        buttonText = intl.formatMessage(messages[`${certCase}Button`]);
-        break;
-
       case 'unverified':
         certCase = 'unverified';
         if (verificationData.status === 'pending') {

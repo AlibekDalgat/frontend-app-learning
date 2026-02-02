@@ -51,6 +51,10 @@ const CertificateStatusAlert = ({ payload }) => {
     });
   };
 
+  if (certStatus === CERT_STATUS_TYPE.REQUESTING) {
+    return null;
+  }
+
   const renderCertAwardedStatus = () => {
     const alertProps = {
       variant: 'success',
@@ -59,8 +63,13 @@ const CertificateStatusAlert = ({ payload }) => {
     };
     if (certStatus === CERT_STATUS_TYPE.EARNED_NOT_AVAILABLE) {
       const timezoneFormatArgs = userTimezone ? { timeZone: userTimezone } : {};
-      const certificateAvailableDateFormatted = <FormattedDate value={certificateAvailableDate} day="numeric" month="long" year="numeric" />;
-      const courseEndDateFormatted = <FormattedDate value={courseEndDate} day="numeric" month="long" year="numeric" />;
+      const certificateAvailableDateFormatted = (
+        <FormattedDate value={certificateAvailableDate} day="numeric" month="long" year="numeric" />
+      );
+      const courseEndDateFormatted = (
+        <FormattedDate value={courseEndDate} day="numeric" month="long" year="numeric" />
+      );
+
       alertProps.header = intl.formatMessage(certMessages.certStatusEarnedNotAvailableHeader);
       alertProps.body = (
         <p>
@@ -83,15 +92,6 @@ const CertificateStatusAlert = ({ payload }) => {
       alertProps.buttonLink = certURL;
       alertProps.buttonAction = () => {
         sendAlertClickTracking('edx.ui.lms.course_outline.certificate_alert_downloadable_button.clicked');
-      };
-    } else if (certStatus === CERT_STATUS_TYPE.REQUESTING) {
-      alertProps.header = intl.formatMessage(certMessages.certStatusDownloadableHeader);
-      alertProps.buttonMessage = intl.formatMessage(certStatusMessages.requestableButton);
-      alertProps.buttonVisible = true;
-      alertProps.buttonLink = '';
-      alertProps.buttonAction = () => {
-        sendAlertClickTracking('edx.ui.lms.course_outline.certificate_alert_request_cert_button.clicked');
-        dispatch(requestCert(courseId));
       };
     }
     return alertProps;
@@ -137,7 +137,6 @@ const CertificateStatusAlert = ({ payload }) => {
   switch (certStatus) {
     case CERT_STATUS_TYPE.EARNED_NOT_AVAILABLE:
     case CERT_STATUS_TYPE.DOWNLOADABLE:
-    case CERT_STATUS_TYPE.REQUESTING:
       alertProps = renderCertAwardedStatus();
       break;
     case CERT_STATUS_TYPE.UNVERIFIED:
@@ -148,6 +147,10 @@ const CertificateStatusAlert = ({ payload }) => {
         alertProps = renderNotPassingCourseEnded();
       }
       break;
+  }
+
+  if (!alertProps.variant) {
+    return null;
   }
 
   return (
