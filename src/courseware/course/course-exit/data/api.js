@@ -44,3 +44,19 @@ export async function postUnsubscribeFromGoalReminders(courseId) {
     subscribed_to_reminders: false,
   });
 }
+
+export async function checkCourseCompletionStatus(courseId) {
+  const baseUrl = getConfig().LMS_BASE_URL;
+  const url = `${baseUrl}/api/course_home/v1/is_complete/${courseId}`;
+
+  try {
+    const { data } = await getAuthenticatedHttpClient().get(url);
+    return {
+      is_complete: data.is_complete === true,
+      certificate_active: data.certificate_active === true,
+    };
+  } catch (error) {
+    logError(error);
+    return { is_complete: false, certificate_active: false };
+  }
+}

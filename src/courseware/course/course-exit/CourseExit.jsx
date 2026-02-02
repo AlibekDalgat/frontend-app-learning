@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { getConfig } from '@edx/frontend-platform';
 import { useIntl } from '@edx/frontend-platform/i18n';
@@ -9,15 +9,18 @@ import { Navigate } from 'react-router-dom';
 import CourseCelebration from './CourseCelebration';
 import CourseInProgress from './CourseInProgress';
 import CourseNonPassing from './CourseNonPassing';
-import { COURSE_EXIT_MODES, getCourseExitMode } from './utils';
 import messages from './messages';
 import { unsubscribeFromGoalReminders } from './data/thunks';
 
 import { useModel } from '../../../generic/model-store';
 
+import { checkCourseCompletionStatus } from './data/api';
+
 const CourseExit = () => {
   const intl = useIntl();
   const { courseId } = useSelector(state => state.courseware);
+
+  const courseMeta = useModel('coursewareMeta', courseId);
   const {
     certificateData,
     courseExitPageIsActive,
@@ -26,21 +29,48 @@ const CourseExit = () => {
     hasScheduledContent,
     isEnrolled,
     userHasPassingGrade,
-  } = useModel('coursewareMeta', courseId);
+  } = courseMeta;
 
-  const {
-    isMasquerading,
-    canViewCertificate,
-  } = useModel('courseHomeMeta', courseId);
+  const homeMeta = useModel('courseHomeMeta', courseId);
+  const { isMasquerading, canViewCertificate } = homeMeta;
 
-  const mode = getCourseExitMode(
-    certificateData,
-    hasScheduledContent,
-    isEnrolled,
-    userHasPassingGrade,
-    courseExitPageIsActive,
-    canViewCertificate,
-  );
+  const [completionStatus, setCompletionStatus] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    let mounted = true;
+
+    const loadStatus = async () => {
+      try {
+        const data = await checkCourseCompletionStatus(courseId);
+        if (mounted) {
+          setCompletionStatus(data);
+          setIsLoading(false);
+        }
+      } catch (err) {
+        console.error('Ошибка проверки статуса курса:', err);
+        if (mounted) {
+          setCompletionStatus({ is_complete: false, certificate_active: false });
+          setIsLoading(false);
+        }
+      }
+    };
+
+    loadStatus();
+
+    return () => { mounted = false; };
+  }, [courseId]);
+
+  if (isLoading) {
+    return (
+      <div className="text-center py-5">
+        <div className="spinner-border text-primary" role="status">
+          <span className="visually-hidden">
+          </span>
+        </div>
+      </div>
+    );
+  }
 
   // Audit users cannot fully complete a course, so we will
   // unsubscribe them from goal reminders once they reach the course exit page
@@ -48,18 +78,48 @@ const CourseExit = () => {
   if (courseGoals && enrollmentMode === 'audit' && !isMasquerading) {
     useEffect(() => {
       unsubscribeFromGoalReminders(courseId);
-    }, []);
+    }, [courseId]);
   }
 
-  let body = null;
-  if (mode === COURSE_EXIT_MODES.nonPassing) {
-    body = (<CourseNonPassing />);
-  } else if (mode === COURSE_EXIT_MODES.inProgress) {
-    body = (<CourseInProgress />);
-  } else if (mode === COURSE_EXIT_MODES.celebration) {
-    body = (<CourseCelebration />);
+  if (!courseExitPageIsActive || !isEnrolled) {
+    return <Navigate to={`/course/${courseId}`} replace />;
+  }
+
+  if (hasScheduledContent) {
+    return (
+      <>
+        <div className="row w-100 mt-2 mb-4 justify-content-end">
+          <Button
+            variant="outline-primary"
+            href={`${getConfig().LMS_BASE_URL}/dashboard`}
+          >
+            {intl.formatMessage(messages.viewCoursesButton)}
+          </Button>
+        </div>
+        <CourseInProgress />
+      </>
+    );
+  }
+
+  const { is_complete: materialsCompleted, certificate_active: certificateActive } = completionStatus || {
+    is_complete: false,
+    certificate_active: false,
+  };
+
+  let body;
+
+  if (materialsCompleted) {
+    if (!certificateActive) {
+      body = <CourseCelebration />;
+    } else {
+      if (userHasPassingGrade === true) {
+        body = <CourseCelebration />;
+      } else {
+        body = <CourseNonPassing reason="low_grade" />;
+      }
+    }
   } else {
-    return (<Navigate to={`/course/${courseId}`} replace />);
+    body = <CourseNonPassing reason="incomplete" />;
   }
 
   return (

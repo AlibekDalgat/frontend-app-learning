@@ -105,7 +105,7 @@ function GetCourseExitNavigation(courseId, intl) {
       exitText = intl.formatMessage(messages.nextButtonComplete);
       break;
     case COURSE_EXIT_MODES.nonPassing:
-      exitText = intl.formatMessage(messages.nextButtonEnd);
+      exitText = intl.formatMessage(messages.nextButtonComplete);
       break;
     default:
       exitText = null;

@@ -199,6 +199,24 @@ const messages = defineMessages({
     defaultMessage: 'View grades',
   },
 
+  endOfCourseDescriptionIncomplete: {
+    id: 'courseware.course_exit.non_passing.incomplete_description',
+    defaultMessage: 'Вы не завершили прохождение всех материалов курса. Вернитесь и закончите оставшиеся разделы.',
+    description: 'Сообщение, когда материалы пройдены не на 100%, сертификат не ожидается или не важен',
+  },
+
+  returnToCourseButton: {
+    id: 'courseware.course_exit.non_passing.return_to_course_button',
+    defaultMessage: 'Вернуться к курсу',
+    description: 'Кнопка возврата в курс, когда материалы не пройдены полностью',
+  },
+
+  endOfCourseDescriptionLowGrade: {
+    id: 'courseware.course_exit.end_of_course_description_low_grade',
+    defaultMessage: 'Вы прошли все материалы курса, но не набрали проходной балл. Просмотрите оценки и попробуйте улучшить результаты в заданиях с оценкой.',
+    description: 'Сообщение, когда сертификат активирован, но балл ниже проходного',
+  },
+
 });
 
 export default messages;

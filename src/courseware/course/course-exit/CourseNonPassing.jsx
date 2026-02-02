@@ -14,21 +14,61 @@ import DashboardFootnote from './DashboardFootnote';
 import messages from './messages';
 import { logClick, logVisit } from './utils';
 
-const CourseNonPassing = () => {
+const CourseNonPassing = ({ reason = 'incomplete' }) => {
   const intl = useIntl();
   const { courseId } = useSelector(state => state.courseware);
   const {
     org,
     tabs,
     title,
+    certificateData,
+    canViewCertificate,
   } = useModel('courseHomeMeta', courseId);
   const { administrator } = getAuthenticatedUser();
 
-  // Get progress tab link for 'view grades' button
+  const certificateExpected = !!certificateData && canViewCertificate;
   const progressTab = tabs.find(tab => tab.slug === 'progress');
   const progressLink = progressTab && progressTab.url;
 
-  useEffect(() => logVisit(org, courseId, administrator, 'nonpassing'), [org, courseId, administrator]);
+  const courseHomeLink = `/learning/course/${courseId}/home`;
+
+  useEffect(() => {
+    const visitVariant = reason === 'low_grade'
+      ? 'nonpassing-low-grade'
+      : 'nonpassing-incomplete';
+    logVisit(org, courseId, administrator, visitVariant);
+  }, [org, courseId, administrator, reason]);
+
+  let alertMessage;
+  let button = null;
+
+  if (reason === 'low_grade') {
+    alertMessage = intl.formatMessage(messages.endOfCourseDescriptionLowGrade);
+    if (progressLink) {
+      button = (
+        <Button
+          variant="primary"
+          className="flex-shrink-0 mt-3 mt-sm-0 mb-1 mb-sm-0 ml-sm-5"
+          href={progressLink}
+          onClick={() => logClick(org, courseId, administrator, 'view_grades')}
+        >
+          {intl.formatMessage(messages.viewGradesButton)}
+        </Button>
+      );
+    }
+  } else {
+    alertMessage = intl.formatMessage(messages.endOfCourseDescriptionIncomplete);
+    button = (
+      <Button
+        variant="outline-primary"
+        className="flex-shrink-0 mt-3 mt-sm-0 mb-1 mb-sm-0 ml-sm-5"
+        href={courseHomeLink}
+        onClick={() => logClick(org, courseId, administrator, 'return_to_course')}
+      >
+        {intl.formatMessage(messages.returnToCourseButton)}
+      </Button>
+    );
+  }
 
   return (
     <>
@@ -41,17 +81,11 @@ const CourseNonPassing = () => {
         </div>
         <Alert variant="primary" className="col col-lg-10 mt-4">
           <div className="row w-100 m-0 align-items-start">
-            <div className="flex-grow-1 col-sm p-0">{ intl.formatMessage(messages.endOfCourseDescription) }</div>
-            {progressLink && (
-              <Button
-                variant="primary"
-                className="flex-shrink-0 mt-3 mt-sm-0 mb-1 mb-sm-0 ml-sm-5"
-                href={progressLink}
-                onClick={() => logClick(org, courseId, administrator, 'view_grades')}
-              >
-                {intl.formatMessage(messages.viewGradesButton)}
-              </Button>
-            )}
+            <div className="flex-grow-1 col-sm p-0">
+              {alertMessage}
+            </div>
+
+            {button}
           </div>
         </Alert>
         <DashboardFootnote variant="nonpassing" />
