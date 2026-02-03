@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { Button, Card, Spinner } from '@openedx/paragon';
+import React from 'react';
+import { Button, Card } from '@openedx/paragon';
 import { useIntl } from '@edx/frontend-platform/i18n';
 
 import { useSelector } from 'react-redux';
 import { sendTrackingLogEvent } from '@edx/frontend-platform/analytics';
 import messages from '../messages';
 import { useModel } from '../../../generic/model-store';
-import { checkCourseCompletionStatus } from '../../../courseware/course/course-exit/data/api';
 
 const StartOrResumeCourseCard = () => {
   const intl = useIntl();
@@ -29,45 +28,6 @@ const StartOrResumeCourseCard = () => {
       url: resumeCourseUrl,
     },
   } = useModel('outline', courseId);
-
-  const [isComplete, setIsComplete] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    let mounted = true;
-
-    const fetchCompletion = async () => {
-      try {
-        const { is_complete } = await checkCourseCompletionStatus(courseId);
-        if (mounted) {
-          setIsComplete(is_complete);
-          setIsLoading(false);
-        }
-      } catch (err) {
-        console.error('Ошибка проверки завершённости курса в Outline:', err);
-        if (mounted) {
-          setIsComplete(false);
-          setIsLoading(false);
-        }
-      }
-    };
-
-    fetchCompletion();
-
-    return () => { mounted = false; };
-  }, [courseId]);
-
-  if (isLoading) {
-    return (
-      <Card className="mb-3 raised-card text-center py-3">
-        <Spinner animation="border" size="sm" />
-      </Card>
-    );
-  }
-
-  if (isComplete === true) {
-    return null;
-  }
 
   if (!resumeCourseUrl) {
     return null;

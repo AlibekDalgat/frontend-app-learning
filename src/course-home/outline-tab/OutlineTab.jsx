@@ -40,7 +40,7 @@ const OutlineTab = () => {
     org,
     title,
   } = useModel('courseHomeMeta', courseId);
-
+  const { isCourseCompleted = false } = useModel('outline', courseId);
   const expandButtonRef = useRef();
 
   const {
@@ -150,7 +150,7 @@ const OutlineTab = () => {
               <UpgradeToShiftDatesAlert model="outline" logUpgradeLinkClick={logUpgradeToShiftDatesLinkClick} />
             </>
           )}
-          <StartOrResumeCourseCard />
+          {!isCourseCompleted && <StartOrResumeCourseCard />}
           <WelcomeMessage courseId={courseId} nextElementRef={expandButtonRef} />
           {rootCourseId && (
             <>
