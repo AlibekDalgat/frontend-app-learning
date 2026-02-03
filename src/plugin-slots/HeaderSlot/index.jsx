@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { PluginSlot } from '@openedx/frontend-plugin-framework';
 
-import CustomLearningHeader from '../../components/CustomLearningHeader';
+import { LearningHeader } from '../../components/LearningHeader';
 
 const HeaderSlot = ({
   courseOrg, courseNumber, courseTitle, showUserDropdown,
@@ -9,9 +9,7 @@ const HeaderSlot = ({
   <PluginSlot
     id="org.openedx.frontend.layout.header_learning.v1"
     idAliases={['header_slot']}
-    slotOptions={{
-      mergeProps: true,
-    }}
+    slotOptions={{ mergeProps: true }}
     pluginProps={{
       courseOrg,
       courseNumber,
@@ -19,7 +17,7 @@ const HeaderSlot = ({
       showUserDropdown,
     }}
   >
-    <CustomLearningHeader
+    <LearningHeader
       courseOrg={courseOrg}
       courseNumber={courseNumber}
       courseTitle={courseTitle}
