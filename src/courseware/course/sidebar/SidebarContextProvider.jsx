@@ -24,6 +24,7 @@ const SidebarProvider = ({
   const isUnitHasDiscussionTopics = topic?.id && topic?.enabledInContext;
   const shouldDisplayFullScreen = useWindowSize().width < breakpoints.extraLarge.minWidth;
   const shouldDisplaySidebarOpen = useWindowSize().width > breakpoints.extraLarge.minWidth;
+  const shouldAutoOpenOutline = useWindowSize() >= breakpoints.extraLarge.minWidth;
   const query = new URLSearchParams(window.location.search);
   const { alwaysOpenAuxiliarySidebar } = useSelector(getCoursewareOutlineSidebarSettings);
   const isInitiallySidebarOpen = shouldDisplaySidebarOpen || query.get('sidebar') === 'true';
@@ -75,8 +76,9 @@ const SidebarProvider = ({
     shouldDisplayFullScreen,
     courseId,
     unitId,
+    shouldAutoOpenOutline,
   }), [courseId, currentSidebar, notificationStatus, onNotificationSeen, shouldDisplayFullScreen,
-    shouldDisplaySidebarOpen, toggleSidebar, unitId, upgradeNotificationCurrentState]);
+    shouldDisplaySidebarOpen, toggleSidebar, unitId, upgradeNotificationCurrentState, shouldAutoOpenOutline]);
 
   return (
     <SidebarContext.Provider value={contextValue}>

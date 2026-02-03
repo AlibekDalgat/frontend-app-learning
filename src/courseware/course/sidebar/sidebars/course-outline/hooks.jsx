@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { sendTrackEvent, sendTrackingLogEvent } from '@edx/frontend-platform/analytics';
-
+import { breakpoints, useWindowSize } from '@openedx/paragon';
 import { useModel } from '@src/generic/model-store';
 import { LOADED } from '@src/constants';
 import { checkBlockCompletion, getCourseOutlineStructure } from '@src/courseware/data/thunks';
@@ -40,6 +40,7 @@ export const useCourseOutlineSidebar = () => {
     currentSidebar,
     toggleSidebar,
     shouldDisplayFullScreen,
+    shouldAutoOpenOutline,
   } = useContext(SidebarContext);
 
   const isOpenSidebar = !initialSidebar && isEnabledSidebar && !isCollapsedOutlineSidebar;
@@ -93,10 +94,10 @@ export const useCourseOutlineSidebar = () => {
   };
 
   useEffect(() => {
-    if (isOpenSidebar && currentSidebar !== ID) {
+    if (isOpenSidebar && currentSidebar !== ID && shouldAutoOpenOutline) {
       toggleSidebar(ID);
     }
-  }, [initialSidebar, unitId]);
+  }, [initialSidebar, unitId, shouldAutoOpenOutline]);
 
   useEffect(() => {
     if ((isEnabledSidebar && courseOutlineStatus !== LOADED) || courseOutlineShouldUpdate) {
