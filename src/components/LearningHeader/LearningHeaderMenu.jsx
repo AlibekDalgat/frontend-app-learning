@@ -23,6 +23,11 @@ const getLearningHeaderMenu = (
     href: courseSearchUrl.startsWith('http') ? courseSearchUrl : `${getConfig().LMS_BASE_URL}${courseSearchUrl}`,
     content: formatMessage(messages.catalog),
   },
+    {
+      type: 'item',
+      href: `${getConfig().ACCOUNT_PROFILE_URL}/ratings`,
+      content: formatMessage(messages.ratings),
+    },
 ],
 
 userMenu: authenticatedUser ? [
