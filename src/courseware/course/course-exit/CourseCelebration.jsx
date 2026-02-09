@@ -308,7 +308,7 @@ const CourseCelebration = ({ certificateActive = true }) => {
         </div>
         <div className="col-12 px-0 px-md-5">
           {certHeader && (
-          <Alert variant="success" icon={CheckCircle}>
+          <Alert variant="success">
             <div className="row w-100 m-0">
               <div className="col order-1 order-md-0 pl-0 pr-0 pr-md-5">
                 <div className="h4">{certHeader}</div>

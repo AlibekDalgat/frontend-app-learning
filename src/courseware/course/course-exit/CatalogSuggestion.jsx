@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 
+import { AppContext } from '@edx/frontend-platform/react';
 import { getConfig } from '@edx/frontend-platform';
 import { getAuthenticatedUser } from '@edx/frontend-platform/auth';
 import { FormattedMessage, useIntl } from '@edx/frontend-platform/i18n';
@@ -19,11 +20,13 @@ const CatalogSuggestion = ({ variant }) => {
   const { courseId } = useSelector(state => state.courseware);
   const { org } = useModel('courseHomeMeta', courseId);
   const { administrator } = getAuthenticatedUser();
+  const { config: appConfig } = React.useContext(AppContext);
+  const courseSearchUrl = appConfig.COURSE_CATALOG_URL || '/courses';
 
   const searchOurCatalogLink = (
     <Hyperlink
       style={{ textDecoration: 'underline' }}
-      destination={getConfig().SEARCH_CATALOG_URL}
+      destination={`${getConfig().LMS_BASE_URL}${courseSearchUrl}`}
       className="text-reset"
       onClick={() => logClick(org, courseId, administrator, 'catalog_search', { variant })}
     >
