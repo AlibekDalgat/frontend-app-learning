@@ -145,24 +145,19 @@ const CourseCelebration = () => {
       break;
     }
     case 'requesting':
-      // The requesting status needs a different button because it does a POST instead of a GET.
-      // So we don't set buttonLocation and instead define a custom button as a buttonPrefix.
-      buttonEvent = 'request_cert';
-      buttonPrefix = (
-        <Button
-          variant={buttonVariant}
-          onClick={() => {
-            logClick(org, courseId, administrator, buttonEvent);
-            dispatch(requestCert(courseId));
-          }}
-        >
-          {intl.formatMessage(messages.requestCertificateButton)}
-        </Button>
+      certHeader = intl.formatMessage(messages.certificateHeaderPreparing);
+      message = (
+        <p>
+          <FormattedMessage
+            id="courseCelebration.certificateBody.preparing"
+            defaultMessage="
+              Ваш сертификат готовится. Вы вскоре сможете скачать свой сертификат и получить
+              доступ к нему с ваших {dashboardLink} и {profileLink}."
+            values={{ dashboardLink, profileLink }}
+            description="Recommending an action for learner when course certificate is being prepared"
+          />
+        </p>
       );
-      certHeader = intl.formatMessage(messages.certificateHeaderRequestable);
-      message = (<p>{intl.formatMessage(messages.requestCertificateBodyText)}</p>);
-      visitEvent = 'celebration_with_requestable_cert';
-      footnote = <DashboardFootnote variant={visitEvent} />;
       break;
     case 'unverified':
       certHeader = intl.formatMessage(messages.certificateHeaderUnverified);

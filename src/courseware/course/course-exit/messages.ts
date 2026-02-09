@@ -11,6 +11,11 @@ const messages = defineMessages({
     defaultMessage: 'Your certificate is available!',
     description: 'Text displayed when course certificate is ready to be downloaded',
   },
+  certificateHeaderPreparing: {
+    id: 'courseCelebration.certificateHeader.preparing',
+    defaultMessage: 'Ваш сертификат скоро будет доступен!',
+    description: 'Text displayed when course certificate is being prepared',
+  },
   certificateHeaderNotAvailable: {
     id: 'courseCelebration.certificateHeader.notAvailable',
     defaultMessage: 'Your grade and certificate status will be available soon.',
