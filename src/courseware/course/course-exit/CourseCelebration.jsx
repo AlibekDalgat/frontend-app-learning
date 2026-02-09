@@ -34,7 +34,7 @@ import CourseRecommendationsSlot from '../../../plugin-slots/CourseRecommendatio
 
 const LINKEDIN_BLUE = '#2867B2';
 
-const CourseCelebration = () => {
+const CourseCelebration = ({ certificateActive = true }) => {
   const intl = useIntl();
   const wideScreen = useWindowSize().width >= breakpoints.medium.minWidth;
   const { courseId } = useSelector(state => state.courseware);
@@ -241,7 +241,7 @@ const CourseCelebration = () => {
       }
       break;
     default:
-      if (!canViewCertificate) {
+      if (!canViewCertificate && certificateActive) {
         //  We reuse the cert event here. Since this default state is so
         //  Similar to the earned_not_available state, this event name should be fine
         //  to cover the same cases.

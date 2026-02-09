@@ -110,10 +110,10 @@ const CourseExit = () => {
 
   if (materialsCompleted) {
     if (!certificateActive) {
-      body = <CourseCelebration />;
+      body = <CourseCelebration certificateActive={false} />;
     } else {
       if (userHasPassingGrade === true) {
-        body = <CourseCelebration />;
+        body = <CourseCelebration certificateActive={true} />;
       } else {
         body = <CourseNonPassing reason="low_grade" />;
       }
