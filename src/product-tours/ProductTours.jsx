@@ -119,7 +119,7 @@ const ProductTours = ({
       enabled: isNewUserCourseHomeTourEnabled,
       onDismiss: () => {
         setIsNewUserCourseHomeTourEnabled(false);
-        setIsAbandonTourEnabled(true);
+        // setIsAbandonTourEnabled(true);
         sendTrackEvent('edx.ui.lms.new_user_tour.dismissed', {
           org_key: org,
           courserun_key: courseId,
@@ -154,7 +154,7 @@ const ProductTours = ({
             is_staff: administrator,
           });
           dispatch(closeNewUserCourseHomeModal());
-          setIsAbandonTourEnabled(true);
+          // setIsAbandonTourEnabled(true);
           dispatch(endCourseHomeTour(username));
         }}
         onStartTour={() => {
