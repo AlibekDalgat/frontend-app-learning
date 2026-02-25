@@ -33,7 +33,9 @@ const CourseAccessErrorPage = () => {
         <PageLoading
           srMessage={intl.formatMessage(messages.loading)}
         />
-        <CustomFooter />
+        <div className="app-footer">
+          <CustomFooter />
+        </div>
       </>
     );
   }

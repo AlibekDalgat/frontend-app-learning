@@ -17,12 +17,14 @@ const HeaderSlot = ({
       showUserDropdown,
     }}
   >
-    <LearningHeader
-      courseOrg={courseOrg}
-      courseNumber={courseNumber}
-      courseTitle={courseTitle}
-      showUserDropdown={showUserDropdown}
-    />
+    <div className="app-header-fixed">
+      <LearningHeader
+        courseOrg={courseOrg}
+        courseNumber={courseNumber}
+        courseTitle={courseTitle}
+        showUserDropdown={showUserDropdown}
+      />
+    </div>
   </PluginSlot>
 );
 

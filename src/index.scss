@@ -490,3 +490,21 @@
 @import "course-tabs/course-tabs-navigation.scss";
 @import "courseware/course/sidebar/common/SidebarBase.scss";
 @import "courseware/course/sidebar/sidebars/course-outline/CourseOutlineTray.scss";
+
+.app-header-fixed {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.app-footer {
+  flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+  .app-footer {
+    position: sticky;
+    bottom: 0;
+    z-index: 1000;
+  }
+}
