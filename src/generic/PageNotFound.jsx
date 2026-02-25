@@ -41,7 +41,9 @@ const PageNotFound = () => {
           )}
         </p>
       </main>
-      <CustomFooter />
+      <div className="app-footer">
+        <CustomFooter />
+      </div>>
     </>
   );
 };

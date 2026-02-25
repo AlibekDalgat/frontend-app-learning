@@ -81,7 +81,9 @@ const TabPage = (props) => {
           {intl.formatMessage(messages.failure)}
         </p>
       )}
-      <CustomFooter />
+      <div className="app-footer">
+        <CustomFooter />
+      </div>
     </>
   );
 };
