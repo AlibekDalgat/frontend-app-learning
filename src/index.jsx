@@ -54,7 +54,12 @@ const applyWidgetTheme = () => {
   root.style.setProperty('--pgn-color-primary', config.WIDGET_BRAND_PRIMARY);
   root.style.setProperty('--pgn-btn-brand-bg', config.WIDGET_BRAND_PRIMARY);
 
-  root.style.setProperty('--widget-logo-url', `url(${config.WIDGET_LOGO_URL})`);
+  if (config.WIDGET_MODE && config.WIDGET_LOGO_URL) {
+    document.body.setAttribute('data-widget-mode', 'true');
+    document.documentElement.style.setProperty('--widget-logo-url', `url(${config.WIDGET_LOGO_URL})`);
+  } else {
+    document.body.removeAttribute('data-widget-mode');
+  }
 };
 
 subscribe(APP_READY, () => {
