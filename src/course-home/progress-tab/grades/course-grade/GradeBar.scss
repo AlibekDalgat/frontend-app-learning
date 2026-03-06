@@ -13,7 +13,7 @@
   }
 
   .grade-bar--passing {
-    fill: $primary-500;
+    fill: var(--primary);
   }
 
   .grade-bar--current-passing {
@@ -44,9 +44,9 @@
 }
 
 #non-passing-grade-tooltip {
-  background: $primary;
+  background: var(--primary);
 
   .arrow::after {
-    border-top-color: $primary;
+    border-top-color: var(--primary);
   }
 }

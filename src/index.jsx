@@ -37,9 +37,29 @@ import { DECODE_ROUTES, ROUTES } from './constants';
 import PreferencesUnsubscribe from './preferences-unsubscribe';
 import PageNotFound from './generic/PageNotFound';
 
+const applyWidgetTheme = () => {
+  const config = getConfig();
+  const root = document.documentElement; // :root
+
+  root.style.setProperty('--primary', '#2F2F60');
+  root.style.setProperty('--primary-light', '#EDE8F5');
+
+  if (!config.WIDGET_MODE) {
+    return;
+  }
+
+
+  root.style.setProperty('--primary', config.WIDGET_BRAND_PRIMARY);
+  root.style.setProperty('--primary-light', config.WIDGET_BRAND_PRIMARY_LIGHT);
+  root.style.setProperty('--pgn-color-primary', config.WIDGET_BRAND_PRIMARY);
+  root.style.setProperty('--pgn-btn-brand-bg', config.WIDGET_BRAND_PRIMARY);
+
+  root.style.setProperty('--widget-logo-url', `url(${config.WIDGET_LOGO_URL})`);
+};
+
 subscribe(APP_READY, () => {
   const root = createRoot(document.getElementById('root'));
-
+  applyWidgetTheme();
   root.render(
     <StrictMode>
       <AppProvider store={store}>

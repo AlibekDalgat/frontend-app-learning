@@ -1,13 +1,11 @@
 $text-color: $gray-800 !default;
 $text-color-primary: $gray-700 !default;
-$primary: #2F2F60;
-$primary-light: #EDE8F5 !default;
 
 #courseHome-outline {
     .pgn_collapsible {
         border-radius: 8px;
         border: 1px solid #E5E7EB;
-        border-left: 8px solid $primary-light;
+        border-left: 8px solid var(--primary-light);
     }
     .collapsible-trigger {
         padding: 8px 20px;
@@ -28,7 +26,7 @@ $primary-light: #EDE8F5 !default;
             }
         }
         .text-success {
-            color: $primary !important;
+            color: var(--primary) !important;
         }
         .align-middle.col-6 {
             padding-left: 0;
@@ -51,7 +49,7 @@ $primary-light: #EDE8F5 !default;
             padding: 0 0 0 91px;
         }
         .text-success {
-            color: $primary !important;
+            color: var(--primary) !important;
         }
         ol {
             padding: 0 0 15px;
@@ -75,7 +73,7 @@ $primary-light: #EDE8F5 !default;
 }
 #root {
     .bg-light-400 {
-        background: $primary-light !important;
+        background: var(--primary-light) !important;
     }
     .row.w-100.border.border-light > .col-12 .alert.alert-success,
     .streak-modal .alert.alert-success {
@@ -97,7 +95,7 @@ $primary-light: #EDE8F5 !default;
     }
     .course-outline-tab {
         .raised-card {
-            background: $primary-light;
+            background: var(--primary-light);
             box-shadow: none !important;
             &.alert-content {
                 background: none;
@@ -116,7 +114,7 @@ $primary-light: #EDE8F5 !default;
                     margin-left: 0;
                 }
                 a {
-                    background: $primary;
+                    background: var(--primary) !important;
                     padding: 9px 17px;
                     font-size: 16px;
                     line-height: 24px;
@@ -151,29 +149,34 @@ $primary-light: #EDE8F5 !default;
 }
 
 :root {
-  --pgn-alert-success-bg: #EDE8F5;
-  --pgn-alert-success-border: #EDE8F5;
-  --pgn-alert-success-color: #2F2F60;
-  --pgn-alert-success-btn-bg: #2F2F60;
-  --pgn-alert-success-btn-border: #2F2F60;
+  --pgn-alert-success-bg: var(--primary-light);
+  --pgn-alert-success-border: var(--primary-light);
+  --pgn-alert-success-color: var(--primary);
+  --pgn-alert-success-btn-bg: var(--primary);
+  --pgn-alert-success-btn-border: var(--primary);
   --pgn-alert-success-btn-hover-bg: #1F1F40;
   --pgn-alert-success-btn-hover-border: #1F1F40;
 }
 
+.btn-outline-primary {
+  color: var(--primary) !important;
+  border-color: var(--primary) !important;
+}
+
 .alert-success {
-  background-color: var(--pgn-alert-success-bg, #EDE8F5) !important;
-  border-color: var(--pgn-alert-success-border, #EDE8F5) !important;
+  background-color: var(--primary-light) !important;
+  border-color: var(--primary-light) !important;
 
   .alert-icon {
-    color: var(--pgn-alert-success-color, #2F2F60) !important;
+    color: var(--primary) !important;
   }
 
   .btn-primary,
   .btn-success,
   a[class*="btn"],
   button[class*="btn"]:not(.close) {
-    background-color: var(--pgn-alert-success-btn-bg, #2F2F60) !important;
-    border-color: var(--pgn-alert-success-btn-border, #2F2F60) !important;
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
     color: white !important;
     border-radius: 6px !important;
     padding: 9px 17px !important;
@@ -189,14 +192,14 @@ $primary-light: #EDE8F5 !default;
     }
 
     &:focus {
-      outline: 2px solid #2F2F60 !important;
+      outline: 2px solid var(--primary) !important;
       outline-offset: 2px !important;
     }
   }
 
   a:not([class*="btn"]) {
-    background-color: var(--pgn-alert-success-btn-bg, #2F2F60) !important;
-    border: 1px solid var(--pgn-alert-success-btn-border, #2F2F60) !important;
+    background-color: var(--primary) !important;
+    border: 1px solid var(--primary) !important;
     color: white !important;
     border-radius: 6px !important;
     padding: 3px 3px !important;
@@ -216,13 +219,13 @@ $primary-light: #EDE8F5 !default;
 
 #root .course-outline-tab .col-12.col-md-auto.p-0 .btn {
     background: none !important;
-    color: $primary !important;
+    color: var(--primary) !important;
 }
 .course-tabs-navigation {
     padding-top: 20px;
     border: none;
     .nav.nav-underline-tabs {
-        border-bottom: 1px solid $primary-light;
+        border-bottom: 1px solid var(--primary-light);
         a, button {
             border-width: 2px;
             font-size: 14px;
@@ -272,7 +275,7 @@ div[data-learner-type=b2c_learner] {
                     font-size: 14px;
                     line-height: 20px;
                     font-weight: 500;
-                    color: $primary;
+                    color: var(--primary);
                     text-decoration: underline;
                     &:hover {
                         text-decoration: none;
@@ -288,7 +291,7 @@ div[data-learner-type=b2c_learner] {
 #courseHome-dates {
     a {
         &:hover {
-            color: $primary;
+            color: var(--primary);
         }
     }
     .small {
