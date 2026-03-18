@@ -10,9 +10,7 @@ const CustomFooter = () => {
     ? mfeConfig.WIDGET_LOGO_URL
     : `${appConfig.LMS_BASE_URL}/static/images/logo.png`;
 
-  const logoAlt = mfeConfig.WIDGET_MODE && mfeConfig.WIDGET_PLATFORM_NAME
-    ? `${mfeConfig.WIDGET_PLATFORM_NAME} logo`
-    : 'ProfilUp logo';
+  const logoAlt = `${mfeConfig.SITE_NAME} logo`
 
   return (
     <footer style={{
