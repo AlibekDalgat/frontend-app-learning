@@ -20,14 +20,14 @@ div[role=heading].h2 + .list-unstyled.m-0.mt-4.pt-2 {
                         border: 2px solid  #D1D5DB !important;
                     }
                     &.bg-warning-300 {
-                        border: 2px solid  $primary !important;
+                        border: 2px solid  var(--primary) !important;
                         background: white !important;
                         &:after {
                             position: absolute;
                             left: 50%;
                             top: 50%;
                             content: "";
-                            background: $primary;
+                            background: var(--primary);
                             border-radius: 50%;
                             width: 10px;
                             height: 10px;
@@ -71,13 +71,13 @@ div[role=heading].h2 + .list-unstyled.m-0.mt-4.pt-2 {
         &:first-child {
             &.dates-day.pb-4 {
                 .dates-line-bottom {
-                    border-color: $primary !important;
+                    border-color: var(--primary) !important;
                 }
                 .dates-dot {
                     &.border {
                         &.border-gray-900 {
-                            background: $primary !important;
-                            border: 2px solid  $primary !important;
+                            background: var(--primary) !important;
+                            border: 2px solid  var(--primary) !important;
                             &:before {
                                 position: absolute;
                                 top: 50%;
@@ -92,7 +92,7 @@ div[role=heading].h2 + .list-unstyled.m-0.mt-4.pt-2 {
                             }
                         }
                         &.bg-warning-300 {
-                            border: 2px solid  $primary !important;
+                            border: 2px solid  var(--primary) !important;
                             background: white !important;
                         }
                     }
@@ -104,8 +104,8 @@ div[role=heading].h2 + .list-unstyled.m-0.mt-4.pt-2 {
                 .dates-dot {
                     &.border {
                         &.border-gray-900 {
-                            background: $primary !important;
-                            border: 2px solid  $primary !important;
+                            background: var(--primary) !important;
+                            border: 2px solid  var(--primary) !important;
                             &:before {
                                 position: absolute;
                                 top: 50%;
@@ -120,7 +120,7 @@ div[role=heading].h2 + .list-unstyled.m-0.mt-4.pt-2 {
                             }
                         }
                         &.bg-warning-300 {
-                            border: 2px solid  $primary !important;
+                            border: 2px solid  var(--primary) !important;
                             background: white !important;
                             &:before {
                                 display: none !important;
@@ -131,7 +131,7 @@ div[role=heading].h2 + .list-unstyled.m-0.mt-4.pt-2 {
             }
         }
         .small.mb-2 {
-            background: $primary-light;
+            background: var(--primary-light);
             border-radius: 6px;
             padding: 16px;
             margin: 18px 0 0 0;

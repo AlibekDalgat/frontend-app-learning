@@ -66,11 +66,11 @@
 
 .nav-underline-tabs .nav-link.active {
     font-weight: 400;
-    color: #2F2F60;
-    border-bottom-color: #2F2F60;
+    color: var(--primary);
+    border-bottom-color: var(--primary);
 }
 .nav-underline-tabs .nav-link:hover {
-    color: #2F2F60;
+    color: var(--primary);
 }
 
 .pgn__menu-select .pgn__menu-select-popup {
@@ -153,7 +153,7 @@
         left: 0;
         right: 0;
         height: 2px;
-        background: $primary;
+        background: var(--primary);
       }
     }
 
@@ -240,7 +240,7 @@
           right: auto;
           width: 2px;
           height: auto;
-          background: $primary;
+          background: var(--primary);
         }
       }
     }
@@ -470,7 +470,7 @@
   }
 }
 .custom-bg-info-100 {
-    background-color: #EDE8F5 !important;
+    background-color: var(--primary-light) !important;
 }
 // Import component-specific sass files
 @import "courseware/course/celebration/CelebrationModal.scss";
@@ -507,4 +507,10 @@
     bottom: 0;
     z-index: 1000;
   }
+}
+
+#root > div > div > div {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
