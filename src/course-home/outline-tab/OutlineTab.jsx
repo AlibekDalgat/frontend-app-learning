@@ -11,6 +11,7 @@ import { AlertList } from '../../generic/user-messages';
 import CourseDates from './widgets/CourseDates';
 import CourseHandouts from './widgets/CourseHandouts';
 import StartOrResumeCourseCard from './widgets/StartOrResumeCourseCard';
+import CourseCompletedCard from './widgets/CourseCompletedCard';
 import WeeklyLearningGoalCard from './widgets/WeeklyLearningGoalCard';
 import CourseTools from './widgets/CourseTools';
 import { fetchOutlineTab } from '../data';
@@ -150,7 +151,11 @@ const OutlineTab = () => {
               <UpgradeToShiftDatesAlert model="outline" logUpgradeLinkClick={logUpgradeToShiftDatesLinkClick} />
             </>
           )}
-          {!isCourseCompleted && <StartOrResumeCourseCard />}
+          {isCourseCompleted ? (
+            <CourseCompletedCard />
+          ) : (
+            <StartOrResumeCourseCard />
+          )}
           <WelcomeMessage courseId={courseId} nextElementRef={expandButtonRef} />
           {rootCourseId && (
             <>

@@ -135,6 +135,16 @@ const messages = defineMessages({
     defaultMessage: 'Resume course',
     description: 'Anchor text for button that would resume course',
   },
+  courseFullyCompletedTitle: {
+    id: 'learning.outline.course-fully-completed-title',
+    defaultMessage: 'Вы прошли весь материал обучения!',
+    description: 'Message in card when the entire course is completed',
+  },
+  goToCourseEnd: {
+    id: 'learning.outline.go-to-course-end',
+    defaultMessage: 'Перейти к завершению',
+    description: 'Button text leading to the course completion / exit page',
+  },
   setGoal: {
     id: 'learning.outline.setGoal',
     defaultMessage: 'To start, set a course goal by selecting the option below that best describes your learning plan.',
