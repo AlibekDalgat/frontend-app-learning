@@ -81,7 +81,7 @@ const CourseNonPassing = ({ reason = 'incomplete' }) => {
         </div>
         <Alert variant="primary" className="col col-lg-10 mt-4">
           <div className="row w-100 m-0 align-items-start">
-            <div className="flex-grow-1 col-sm p-0">
+            <div className="flex-grow-1 col-sm p-0" style={{ color: 'black' }}>
               {alertMessage}
             </div>
 
