@@ -154,6 +154,7 @@ const AIAssistantWidget = () => {
   const handleClear = async () => {
     try {
       await clearHistory(session.rag_session_id);
+      setSession(null);
       setMessagesList([]);
       setShowDeleteConfirm(false);
     } catch (err) {

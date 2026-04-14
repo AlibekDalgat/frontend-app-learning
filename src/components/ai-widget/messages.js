@@ -19,7 +19,7 @@ const messages = defineMessages({
   },
   clearHistory: {
     id: 'ai.widget.clearHistory',
-    defaultMessage: 'Очистить историю',
+    defaultMessage: 'Удалить чат',
   },
   cancelClearHistory: {
     id: 'ai.widget.cancelClearHistory',
