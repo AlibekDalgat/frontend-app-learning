@@ -36,7 +36,7 @@ import DecodePageRoute from './decode-page-route';
 import { DECODE_ROUTES, ROUTES } from './constants';
 import PreferencesUnsubscribe from './preferences-unsubscribe';
 import PageNotFound from './generic/PageNotFound';
-
+import AIAssistantWidget from './components/ai-widget/AIAssistantWidget';
 const applyWidgetTheme = () => {
   const config = getConfig();
   const root = document.documentElement; // :root
@@ -74,6 +74,7 @@ subscribe(APP_READY, () => {
         <PathFixesProvider>
           <NoticesProvider>
             <UserMessagesProvider>
+              <AIAssistantWidget />
               <Routes>
                 <Route path="*" element={<PageWrap><PageNotFound /></PageWrap>} />
                 <Route path={ROUTES.UNSUBSCRIBE} element={<PageWrap><GoalUnsubscribe /></PageWrap>} />
