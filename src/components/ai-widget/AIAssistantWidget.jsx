@@ -185,7 +185,7 @@ const AIAssistantWidget = () => {
             <ul>
               {msg.sources.map((src, idx) => (
                 <li key={idx}>
-                  <a href={src.url} target="_blank" rel="noopener noreferrer">
+                  <a href={`${config.LMS_BASE_URL}${src.url}`} target="_blank" rel="noopener noreferrer">
                     {src.citation_marker || `[${idx + 1}]`} {src.title}
                   </a>
                 </li>
