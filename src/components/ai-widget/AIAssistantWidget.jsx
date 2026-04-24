@@ -278,6 +278,11 @@ const AIAssistantWidget = () => {
                 className="send-button"
               />
             </div>
+            <div className="all-chats-link text-center">
+              <a href={`${getConfig().LEARNER_HOME_BASE_URL}ai-assistant`} target="_blank" rel="noopener noreferrer">
+                Все чаты с ИИ-ассистентом
+              </a>
+            </div>
           </div>
         </div>
       )}
