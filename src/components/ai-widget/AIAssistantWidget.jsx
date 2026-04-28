@@ -13,7 +13,10 @@ const AIAssistantWidget = () => {
 
   if (!config.ENABLE_AI_ASSISTANT_WIDGET) return null;
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(() => {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('ai_assistant') === 'open';
+  });
   const [session, setSession] = useState(null);
   const [messagesList, setMessagesList] = useState([]);
   const [input, setInput] = useState('');
@@ -27,6 +30,16 @@ const AIAssistantWidget = () => {
     const match = path.match(/\/course\/([^/]+)/);
     return match ? match[1] : 'global';
   };
+
+  useEffect(() => {
+    if (isOpen) {
+      const url = new URL(window.location.href);
+      if (url.searchParams.has('ai_assistant')) {
+        url.searchParams.delete('ai_assistant');
+        window.history.replaceState({}, '', url.toString());
+      }
+    }
+  }, [isOpen]);
 
   useEffect(() => {
     if (!isOpen || session || sessionError) return;
