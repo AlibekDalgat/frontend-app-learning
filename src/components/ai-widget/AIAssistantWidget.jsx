@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { getConfig } from '@edx/frontend-platform';
 import { IconButton, Button } from '@openedx/paragon';
-import { QuestionAnswerOutline, Close, Send, Delete } from '@openedx/paragon/icons';
+import { SmartToy, Close, Send, Delete } from '@openedx/paragon/icons';
 import { useIntl } from '@edx/frontend-platform/i18n';
 import { getSession, sendMessage, clearHistory } from './api';
 import messages from './messages';
@@ -223,13 +223,21 @@ const AIAssistantWidget = () => {
 
   return (
     <>
-      <IconButton
-        src={QuestionAnswerOutline}
-        iconAs={QuestionAnswerOutline}
+      <div
+        className="ai-assistant-toggle-wrapper"
         onClick={() => setIsOpen(!isOpen)}
-        className="ai-assistant-toggle"
-        size="lg"
-      />
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => e.key === 'Enter' && setIsOpen(!isOpen)}
+      >
+        <span className="ai-toggle-text">{intl.formatMessage(messages.aiAssistant)}</span>
+        <IconButton
+          src={SmartToy}
+          iconAs={SmartToy}
+          size="lg"
+          className="ai-toggle-icon"
+        />
+      </div>
 
       {isOpen && (
         <div className="ai-assistant-container">
